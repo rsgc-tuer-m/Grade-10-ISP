@@ -18,7 +18,8 @@ void setup()
  void draw()
 {
   background(0);
-  
+  //Make background white
+  fill(255);
   //Make top checkpoint line
   rect(10, 10, 90, 10);
   rect(100, 10, 10, 60);
@@ -35,17 +36,15 @@ void setup()
   
   rect(990, 60, 10, 410);
   
-
-  
-  
-  
-  
-  
+  //Draw checkpoints
+  fill(0, 255, 0);
+  rect(20, 20, 80, 50);
+  rect(910, 420, 80, 50);
   
   
  //Create the moving circles
  //Add xPos because it follows the terms at the top
-
+fill(255, 255, 255);
 ellipse(xPos, 100, 15, 15);
 ellipse(xPos, 200, 15, 15);
 ellipse(xPos, 300, 15, 15);
