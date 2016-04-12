@@ -2,9 +2,8 @@
 //Changing the value changes where the circles start
 int xPos=0;
 int xDir=1;
-int speedX=10;
+int speed=2;
 int xPos1=1000;
-
 void setup()
 {
   //Create canvas
@@ -14,7 +13,7 @@ void setup()
   background(0);
   noStroke();
   fill(255, 255, 255);
-}
+  }
 
 void draw()
 {
@@ -36,8 +35,8 @@ void draw()
   rect(900, 470, 100, 10);
 
   rect(990, 60, 10, 410);
-
-  //Draw checkpoints
+  
+   //Draw checkpoints
   fill(0, 255, 0);
   rect(20, 20, 80, 50);
   rect(910, 420, 80, 50);
@@ -54,9 +53,10 @@ void draw()
   ellipse(xPos1, 150, 15, 15);
   ellipse(xPos1, 250, 15, 15);
   ellipse(xPos1, 350, 15, 15);
+ 
+ 
 
-
-  //Keep track of the balls position
+//Keep track of the balls position
   //Makes a loop of th ball being redrawn by one position sideways on the x axis each time 
   //xPos=xPos+xDir*speed;
   xPos=xPos + speedX; 
@@ -81,7 +81,7 @@ void draw()
   }
 }
 
-
-
-//int speedY= 7;
-//int speedX = 7;
+int speedY= 7;
+int speedX = 7;
+  
+  
