@@ -54,6 +54,15 @@ void draw()
   ellipse(xPos1, 250, 15, 15);
   ellipse(xPos1, 350, 15, 15);
  
+ //moving square player
+ //make rectagle
+ rect(x, y, 30, 30);
+ //setting up x varbles + right + left + 1
+ x= x+right;
+ x= x-left;
+ //making y varbles + up + down + 1
+ y= y-up;
+ y= y+down;
  
 
 //Keep track of the balls position
@@ -83,5 +92,24 @@ void draw()
 
 int speedY= 7;
 int speedX = 7;
-  
+
+void keyPressed() {
+  if(key==CODED) {
+    if (keyCode==RIGHT){
+      right=s;
+      left=0;
+    }
+    if(keyCode==LEFT){
+      left=s;
+      right=0;
+    }
+  if(keyCode==UP){
+    up=s;
+    down=0;
+  }
+  if(keyCode==DOWN){
+    down=s;
+    up=0;
+  }
+  }
   
