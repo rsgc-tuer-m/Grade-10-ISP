@@ -112,4 +112,23 @@ void keyPressed() {
     up=0;
   }
   }
+}
+void keyReleased() {
+  if(key==CODED) {
+    right=0;
+    if(keyCode==RIGHT){
+    right=0;
+  }
+  if(keyCode==LEFT){
+    left=0;
+  }
+  if(keyCode==UP){
+    down=0;
+  }
+  if(keyCode==DOWN){
+    down=0;
+  }
+}
+}
+
   
