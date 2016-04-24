@@ -2,8 +2,18 @@
 //Changing the value changes where the circles start
 int xPos=0;
 int xDir=1;
-int speed=2;
+int speedX=10;
 int xPos1=1000;
+int x= 45;
+int y=30;
+int right=0;
+int left=0;
+int up=0;
+int down=0;
+int s=4;
+
+
+
 void setup()
 {
   //Create canvas
@@ -56,7 +66,7 @@ void draw()
  
  //moving square player
  //make rectagle
- rect(x, y, 30, 30);
+ rect(x,y,30,30);
  //setting up x varbles + right + left + 1
  x= x+right;
  x= x-left;
@@ -90,8 +100,8 @@ void draw()
   }
 }
 
-int speedY= 7;
-int speedX = 7;
+//int speedY= 7;
+//int speedX = 7;
 
 void keyPressed() {
   if(key==CODED) {
@@ -110,12 +120,11 @@ void keyPressed() {
   if(keyCode==DOWN){
     down=s;
     up=0;
-  }
+    }
   }
 }
 void keyReleased() {
   if(key==CODED) {
-    right=0;
     if(keyCode==RIGHT){
     right=0;
   }
@@ -123,7 +132,7 @@ void keyReleased() {
     left=0;
   }
   if(keyCode==UP){
-    down=0;
+    up=0;
   }
   if(keyCode==DOWN){
     down=0;
