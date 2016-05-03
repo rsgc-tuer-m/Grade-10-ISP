@@ -101,6 +101,11 @@ void draw()
 
   xPos1=xPos1 + speedX1; 
 //float is an int but more precice 
+
+//It finds the distance from the middle of the ball to the square making a right angle triangle and finding the long side
+//Float a and a1 are the two different rows of balls and all the float bs are the different hights
+//The float cs are the distance and later it says. If float c<10 game over
+//And if it is less the the radius of the ball then it means the ball it's touching the player and game over
   float a = sq(x+15-xPos);
   float a1 = sq(x+15-xPos1);
   float b = sq(y+15-100);
@@ -175,6 +180,9 @@ void draw()
     speedX1=10;
   }
 
+//That makes sure the player can't please the boarders
+//The && means and so both its like 2 if statements in one
+
   if (x<18) {
     left=0;
     right=0;
@@ -222,13 +230,17 @@ void draw()
 //int speedY= 7;
 //int speedX = 7;
 
-
+//key pressed to show when the keys are pressed
+//key code Right for moving right
+//when right is clicked it uses the varible S which stands for speed and is set to 4
+// Add left varible 0 because when right it pressed we dont want it going left
 void keyPressed() {
   if (key==CODED) {
     if (keyCode==RIGHT) {
       right=s;
       left=0;
     }
+    //Same as above same idea
     if (keyCode==LEFT) {
       left=s;
       right=0;
@@ -242,11 +254,17 @@ void keyPressed() {
       up=0;
     }
   }
+  
+ //code needs a loop function for the code to reset back
+ //setup and loop makes the code loop back to the start and run void setup again.
+ // when key "r" is pressed it restarts the game
    if (key=='r') {
       loop();
       setup();
     }
 }
+//key released is for when the key is released
+//For example keycode RIGHT when that key is released it stops moving as seen when i set it to =0
 void keyReleased () {
   if (key==CODED) {
     if (keyCode==RIGHT) {
