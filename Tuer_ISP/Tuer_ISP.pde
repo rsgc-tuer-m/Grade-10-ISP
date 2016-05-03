@@ -1,6 +1,6 @@
 // Keeps track of the balls of the X position
 //Changing the value changes where the circles start
- int xPos;
+int xPos;
 int xDir;
 int speedX;
 int speedX1;
@@ -12,24 +12,23 @@ int left;
 int up;
 int down;
 int s;
-
-
+int deaths;
 
 void setup()
 {
- int xPos=0;
-int xDir=1;
-int speedX=5;
-int speedX1=15;
-int xPos1=1000;
-int x= 45;
-int y=30;
-int right=0;
-int left=0;
-int up=0;
-int down=0;
-int s=4;
-
+  xPos=0;
+  xDir=1;
+  speedX=5;
+  speedX1=-15;
+  xPos1=1000;
+  x= 45;
+  y=30;
+  right=0;
+  left=0;
+  up=0;
+  down=0;
+  s=4;
+  deaths=0;
 
   //Create canvas
   size (1000, 500);
@@ -38,7 +37,7 @@ int s=4;
   background(0);
   noStroke();
   fill(255, 255, 255);
-  }
+}
 
 void draw()
 {
@@ -60,8 +59,8 @@ void draw()
   rect(900, 470, 100, 10);
 
   rect(990, 60, 10, 410);
-  
-   //Draw checkpoints
+
+  //Draw checkpoints
   fill(0, 255, 0);
   rect(20, 20, 80, 50);
   rect(910, 420, 80, 50);
@@ -74,11 +73,11 @@ void draw()
   ellipse(xPos, 200, 15, 15);
   ellipse(xPos, 300, 15, 15);
   ellipse(xPos, 400, 15, 15);
-  ellipse(xPos1, 150, 15, 15);
-  ellipse(xPos1, 250, 15, 15);
-  ellipse(xPos1, 350, 15, 15);
- 
-  
+  ellipse(xPos, 150, 15, 15);
+  ellipse(xPos, 250, 15, 15);
+  ellipse(xPos, 350, 15, 15);
+
+
   ellipse(xPos1, 75, 15, 15);
   ellipse(xPos1, 125, 15, 15);
   ellipse(xPos1, 175, 15, 15);
@@ -86,26 +85,22 @@ void draw()
   ellipse(xPos1, 275, 15, 15);
   ellipse(xPos1, 375, 15, 15);
   ellipse(xPos1, 325, 15, 15);
- 
- //moving square player
- //make rectagle
- rect(x,y,20,20);
- //setting up x varbles + right + left + 1
- x= x+right;
- x= x-left;
- //making y varbles + up + down + 1
- y= y-up;
- y= y+down;
- 
 
-//Keep track of the balls position
+
+  //player
+  rect(x, y, 20, 20);
+  x=x+right;
+  x=x-left;
+  y=y-up;
+  y=y+down;
+
+  //Keep track of the balls position
   //Makes a loop of th ball being redrawn by one position sideways on the x axis each time 
   //xPos=xPos+xDir*speed;
   xPos=xPos + speedX; 
 
-  xPos1=xPos1 - speedX1; 
-
-
+  xPos1=xPos1 + speedX1; 
+//float is an int but more precice 
   float a = sq(x+15-xPos);
   float a1 = sq(x+15-xPos1);
   float b = sq(y+15-100);
@@ -113,7 +108,7 @@ void draw()
   float b2 = sq(y+15-300);
   float b3 = sq(y+15-400);
   float b4 = sq(y+15-150);
-  float b5 = sq(y+15-250);
+  float b5 = sq(y+15-500);
   float b6 = sq(y+15-350);
   float b7 = sq(y+15-125);
   float b8 = sq(y+15-175);
@@ -137,43 +132,50 @@ void draw()
   float c12 = sqrt(a1+b7);
   float c13 = sqrt(a1+b13);
 
- if (c<13||c1<13||c2<15||c3<15||c4<15||c5<15||c6<15||c7<15||c8<15||c9<15||c10<15||c11<15||c12<15||c13<15) {
+
+//this means if the square touches and of the circles then it will be reset to the checkpoint and the death count will increase by 1.
+  if (c<13||c1<13||c2<15||c3<15||c4<15||c5<15||c6<15||c7<15||c8<15||c9<15||c10<15||c11<15||c12<15||c13<15) {
     x= 45;
     y=30;
-    
+    deaths=deaths+1;
   }
+  //sets postion of the word death and types it at those cordinates 
+  text("Deaths: "+deaths, 800, 20);
 
-
+// changes smaller line how far to the left edge it goes
   if (xPos<19)
 
   {
 
+    //this is the speed of the smaller lower line of moving circles
     speedX=10;
   }
 
-
-  if (xPos1>1000 )
+//this changes how far to the right the line of circles goes for the first line.
+  if (xPos1>1000)
 
   {
-
+//changes top line how fast the circles go
     speedX1=-10;
   }
 
+//changes bottom line how far to the right the bottom line circles go
   if (xPos>1000)
 
   {
-
+//changes bottom line of circles its speed
     speedX=-10;
   }
 
+//top line how far over the to the left edge it goes
   if (xPos1<19 )
 
   {
-
+//changes top line circles speed
     speedX1=10;
   }
 
-  if (x<19) {
+  if (x<18) {
     left=0;
     right=0;
     x=20;
@@ -203,10 +205,14 @@ void draw()
     down=0;
     y=72;
   }
+  
+  //if you move the square to the checkpoint text YOU WIN will be drawn at those cordinates.
+  //it will also take the death count and draw how many deaths it took it for you to get there.
   if (y>420) {
     textSize(100);
     text("YOU WIN", 350, 200);
      textSize(25);
+    text("Deaths:"+deaths, 450, 235);
     noLoop();
   }
 }
@@ -216,46 +222,44 @@ void draw()
 //int speedY= 7;
 //int speedX = 7;
 
+
 void keyPressed() {
-  if(key==CODED) {
-    if (keyCode==RIGHT){
+  if (key==CODED) {
+    if (keyCode==RIGHT) {
       right=s;
       left=0;
     }
-    if(keyCode==LEFT){
+    if (keyCode==LEFT) {
       left=s;
       right=0;
     }
-  if(keyCode==UP){
-    up=s;
-    down=0;
-  }
-  if(keyCode==DOWN){
-    down=s;
-    up=0;
+    if (keyCode==UP) {
+      up=s;
+      down=0;
+    }
+    if (keyCode==DOWN) {
+      down=s;
+      up=0;
     }
   }
-  if(key=='r'){
-    loop();
-    setup();
+   if (key=='r') {
+      loop();
+      setup();
+    }
 }
+void keyReleased () {
+  if (key==CODED) {
+    if (keyCode==RIGHT) {
+      right=0;
+    }
+    if (keyCode==LEFT) {
+      left=0;
+    }
+    if (keyCode==UP) {
+      up=-0;
+    }
+    if (keyCode==DOWN) {
+      down=0;
+    }
+  }
 }
-
-void keyReleased() {
-  if(key==CODED) {
-    if(keyCode==RIGHT){
-    right=0;
-  }
-  if(keyCode==LEFT){
-    left=0;
-  }
-  if(keyCode==UP){
-    up=0;
-  }
-  if(keyCode==DOWN){
-    down=0;
-  }
-}
-}
-
-  
